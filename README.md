@@ -76,9 +76,22 @@ docker run -d \
 --name project1.ru \
 -p 127.0.0.1:9000:9000 \
 -v /www:/www \
--v /docker_conf/etc/ssmtp/ssmtp.conf:/docker_conf/etc/ssmtp/ssmtp.conf \
+-v /docker_conf/etc/ssmtp/ssmtp.conf:/etc/ssmtp/ssmtp.conf \
 php-le
 
+```
+
+#### Тестовый скриптик для отправки почты
+```
+<?php
+
+$to      = 'mymail@gmail.com';
+$subject = 'the subject';
+$message = 'hello4';
+$headers = 'From: admin2@site.ru' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+
+mail($to, $subject, $message, $headers);
 ```
 
 ## Про даты
