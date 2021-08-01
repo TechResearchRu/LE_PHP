@@ -99,7 +99,7 @@ $headers = 'From: admin2@site.ru' . "\r\n" .
 mail($to, $subject, $message, $headers);
 ```
 
-#NGINX Example
+## NGINX Example
 С конфигам пока не было времени вникнуть до конца, вероятно он не очень оптимален, если так, то сообщите мне
 
 ```
