@@ -94,6 +94,53 @@ $headers = 'From: admin2@site.ru' . "\r\n" .
 mail($to, $subject, $message, $headers);
 ```
 
+#NGINX Example
+С конфигам пока не было времени вникнуть до конца, вероятно он не очень оптимален, если так, то сообщите мне
+
+```
+#project1
+server 
+{
+	listen 80;
+	server_name project1.loc;
+	root /www/project1.loc/web;
+	index index.php;
+
+
+    location ~* ^/pub/(.+\.(?:gif|jpe?g|png|js|css|woff|ttf|svg|eot|html|htm|txt))$
+    {
+         alias /mp/v1.8/PUB/$1;
+         access_log off;
+         expires 10d;
+    }
+
+
+	location ~* ^.+\.(txt|jpe?g|gif|png|ico|css|txt|bmp|rtf|js|svg|eot|ttf|woff|html?)$
+	{
+         access_log off;
+         add_header Cache-Control "public, max-age=31536000, immutable";
+	}
+	
+	#все запросы направить на index.php
+	location / {
+		rewrite ^/(.*)$ /index.php;
+	}
+
+
+	location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass localhost:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+
+}
+```
+
+
 ## Про даты
 Обычно PHP берет из локали название месяца и оно там в именительном падеже
 > 01 август 2021
@@ -106,6 +153,7 @@ mail($to, $subject, $message, $headers);
 Проверить можно примерно вот так:
 
 ```php
+<?php
 if(setlocale(LC_ALL, 'ru_RU.UTF-8','Russian_Russia.65001')===false) 
         exit('not find UTF-8 LOCALE');
 if(setlocale(LC_NUMERIC, 'en_US.UTF-8', 'C.UTF-8','C')===false) 
@@ -114,4 +162,9 @@ if(setlocale(LC_NUMERIC, 'en_US.UTF-8', 'C.UTF-8','C')===false)
 // 01 августа 2021
 echo strftime('%d %B %Y', time());
 ```
+
+## Обратная связь
+Буду рад любой критике в пользу оптимизации.
+Если у вас возникли сложности, то тоже пишите, вероятно помогу.
+Моя почта pavelbbb@gmail.com , меня зовут Павел Беляев.
 
