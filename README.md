@@ -11,5 +11,25 @@
 ```bash
 mkdir php_le_docker;
 cd php_le_docker;
+wget https://raw.githubusercontent.com/TechResearchRu/LE_PHP_Docker/main/Dockerfile
+docker build -t php-le .
 ```
 
+## Запуск
+
+Если нужно просто поиграться в терминале
+```bash
+docker run -it --rm php-le /bin/sh
+```
+
+Продакшн режим примерно такой
+```bash
+docker run -d \
+--restart=always \
+--name project1.ru \
+-p 127.0.0.1:9000:9000 \
+-v /www:/www \
+php-le
+```
+
+## Настройка почты
