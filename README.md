@@ -71,6 +71,13 @@ sender_canonical_maps =  regexp:/etc/postfix/sender_canonical_maps
 
 ### Запуск контейнера с настройками sendmail
 ```
+docker run -d \
+--restart=always \
+--name project1.ru \
+-p 127.0.0.1:9000:9000 \
+-v /www:/www \
+-v /docker_conf/etc/ssmtp/ssmtp.conf:/docker_conf/etc/ssmtp/ssmtp.conf \
+php-le
 
 ```
 
