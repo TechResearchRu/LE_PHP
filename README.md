@@ -1,7 +1,8 @@
 # LE_PHP_Docker
 Контейнер заточен для LE_Framework, выполняет функционал php-fpm
 * php 7.4.22
-* json, xml, zip, freetype, curl, bcmatch, mysqli, sqlite, ssl и другие полезные утилиты
+* json, xml, zip, freetype, curl, bcmatch, ssl и другие полезные модули
+* mysqli и sqlite
 * поддержка png, jpeg, webp, gif
 * поддержка RabbitMQ (amqp)
 * пропатченная локаль, месяца с маленькой буквы и в родительном падеже
