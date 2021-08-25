@@ -18,7 +18,7 @@ wget https://raw.githubusercontent.com/TechResearchRu/LE_PHP_Docker/main/Dockerf
 docker build -t php-le .
 ```
 
-## Запуск
+## Запуск FPM
 
 Если нужно просто поиграться в терминале
 ```bash
@@ -34,6 +34,12 @@ docker run -d \
 -v /www:/www \
 php-le
 ```
+
+## Выполнение CLI скриптов
+```bash
+docker exec -it project1.ru php -v
+```
+
 
 ## Настройка почты
 Сперва на локальном компе сделаем конфиг, который прокинем
