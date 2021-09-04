@@ -9,12 +9,12 @@
 * отправка почты через ssmtp (транспорт smtp)
 * корректная работа iconv на конструкциях //TRASLITE //IGNORE и других, в базовом докере PHP такого нет
 
-## Установка
+## Сборка из DockerFile
 
 ```bash
 mkdir php_le_docker;
 cd php_le_docker;
-wget https://raw.githubusercontent.com/TechResearchRu/LE_PHP_Docker/main/Dockerfile
+wget https://raw.githubusercontent.com/TechResearchRu/LE_PHP_Docker/main/Docker/Dockerfile
 docker build -t php-le .
 ```
 
