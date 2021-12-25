@@ -6,8 +6,10 @@ ENV PHP_CPPFLAGS="$PHP_CFLAGS"
 ENV PHP_LDFLAGS="-Wl,-O1 -pie"
 
 RUN export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS";
-#RUN addgroup -g 82 -S www-data; 
-RUN adduser -u 82 -D -S -G www-data www-data;
+RUN deluser xfs && delgroup www-data;
+#33:33 for www-data, special for debian hosts
+RUN addgroup -g 33 -S www-data;
+RUN adduser -u 33 -D -S -G www-data www-data;
 #
 #need packages
 RUN apk add --no-cache ca-certificates curl tar xz openssl rabbitmq-c icu libintl ssmtp;
